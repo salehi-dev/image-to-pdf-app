@@ -4,7 +4,6 @@ import {
   SafeAreaView,
   StyleSheet,
   View,
-  Text,
   Button,
   TextInput,
 } from "react-native";
@@ -13,7 +12,21 @@ import { shareAsync } from "expo-sharing";
 
 export default function App() {
   let [name, setName] = useState("");
-
+  const html = `
+    <html>
+      <body>
+        <h1> Hi ${name} <h1/>
+        <p style="color: red;">Hello Aref Salehi <p/>
+      </body>
+    </html>
+  `;
+  const generatePdf = async () => {
+    const file = await printToFileAsync({
+      html: html,
+      base64: false,
+    });
+    await shareAsync(file.uri);
+  };
   return (
     <SafeAreaView style={styles.container}>
       <View>
@@ -23,7 +36,7 @@ export default function App() {
           placeholder="Name"
           style={styles.input}
         />
-        <Button title="Generate PDF" />
+        <Button title="Generate PDF" onPress={generatePdf} />
       </View>
       <StatusBar style="auto" />
     </SafeAreaView>
