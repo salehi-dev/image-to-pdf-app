@@ -1,5 +1,8 @@
+import { useState } from "react";
 import { StatusBar } from "expo-status-bar";
 import { SafeAreaView, StyleSheet, View, Text } from "react-native";
+import { printToFileAsync } from "expo-print";
+import { shareAsync } from "expo-sharing";
 
 export default function App() {
   return (
@@ -15,7 +18,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    margin: 30,
+    margin: 20,
     alignItems: "center",
     justifyContent: "center",
   },
